@@ -1,7 +1,7 @@
 "use client";
 
 import Post from "@/components/post";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const mockPost: Post = {
   id: "1",
@@ -12,6 +12,10 @@ const mockPost: Post = {
 
 const Content = () => {
   const router = useRouter();
+  const { id } = useParams();
+
+  // TODO DEL
+  console.log(id);
 
   return (
     <div>

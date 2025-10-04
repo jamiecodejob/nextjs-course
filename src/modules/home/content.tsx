@@ -14,7 +14,7 @@ const Content = () => {
         alt="bitcoin-banner"
       />
       <h1 className="text-2xl font-bold mt-2">@bitcoin</h1>
-      <p className="text-sm text-white/50 mt-2">
+      <p className="text-sm text-[#000] mt-2">
         Bitcoin is a decentralized digital currency that enables instant,
         peer-to-peer transactions without intermediaries. It is based on
         blockchain technology, which is a distributed ledger that records
@@ -23,8 +23,9 @@ const Content = () => {
       <div className="w-full mt-8">
         <CommentBtn />
       </div>
-
+      <div>123</div>
       <PostList />
+      <div>456</div>
     </>
   );
 };
