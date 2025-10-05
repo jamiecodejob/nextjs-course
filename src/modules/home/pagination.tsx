@@ -2,13 +2,18 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-
+// import {useState, useEffect} from 'react';
 interface PaginationProps {
   totalPages: number;
 }
 
 const Pagination = ({ totalPages }: PaginationProps) => {
   const currentPage = useSearchParams().get("page") || "1";
+  const [time, setTime]=useState(0);
+  // useEffect(()=> {
+  //   setTime(new Date().getTime());
+  // }, [currentPage]);
+
   return (
     <div className="flex gap-4 text-sm font-semibold">
       {Array.from({ length: totalPages }).map((_, index) => (
@@ -20,6 +25,8 @@ const Pagination = ({ totalPages }: PaginationProps) => {
           {index + 1}
         </Link>
       ))}
+      {/* 用來計算時間 */}
+      {/* {time.toString()} */}
     </div>
   );
 };
