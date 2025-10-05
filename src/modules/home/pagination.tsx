@@ -15,7 +15,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
         <Link
           href={`?page=${index + 1}`}
           key={index}
-          className={`${currentPage === `${index + 1}` ? "text-white" : "text-white/50"}`}
+          className={`${currentPage === `${index + 1}` ? "text-[#E87A90]" : "text-[#77969A]"}`}
         >
           {index + 1}
         </Link>

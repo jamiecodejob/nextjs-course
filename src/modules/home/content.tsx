@@ -23,9 +23,7 @@ const Content = () => {
       <div className="w-full mt-8">
         <CommentBtn />
       </div>
-      <div>123</div>
       <PostList />
-      <div>456</div>
     </>
   );
 };
