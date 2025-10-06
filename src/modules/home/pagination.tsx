@@ -9,7 +9,7 @@ interface PaginationProps {
 
 const Pagination = ({ totalPages }: PaginationProps) => {
   const currentPage = useSearchParams().get("page") || "1";
-  const [time, setTime]=useState(0);
+  // const [time, setTime]=useState(0);
   // useEffect(()=> {
   //   setTime(new Date().getTime());
   // }, [currentPage]);
