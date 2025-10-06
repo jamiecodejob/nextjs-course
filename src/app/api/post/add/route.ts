@@ -3,7 +3,7 @@ import { error, success } from "@/utils/apiResponse";
 import { NextRequest } from "next/server";
 import { BUSINESS_STATUS_CODE, DB_NAME } from "@/config/constants";
 import clientPromise from "@/lib/mongodb";
-
+import { v4 as uuidv4 } from "uuid";
 
 export const POST = withApiHandler(async (request: NextRequest) => {
   const body = await request.json();
@@ -21,6 +21,7 @@ export const POST = withApiHandler(async (request: NextRequest) => {
     title,
     content,
     createdAt: new Date().getTime(),
+    id: uuidv4(),
   });
   return Response.json(success({ id: result.insertedId }), {
     status: 200,
