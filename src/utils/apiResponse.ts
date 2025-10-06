@@ -8,6 +8,10 @@ export function success<T>(
   return { status, message, data };
 }
 
+// <T> 是 TypeScript 的泛型宣告。
+// 它代表「這個函式可以接受任何型別的資料」，
+// 但在呼叫時會自動推斷或指定這個型別。
+
 export function error(
   message = "Internal Server Error",
   status = BUSINESS_STATUS_CODE.ERROR,
@@ -15,3 +19,9 @@ export function error(
 ) {
   return { status, message, data };
 }
+
+// data: any = null,
+// 定義一個函式 success，
+// 它有一個參數 data，型別是任意 (any)，
+// 預設值是 null。
+// 如果呼叫時沒有傳 data，那就自動用 null。
