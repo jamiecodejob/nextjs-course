@@ -2,13 +2,7 @@
 
 import Post from "@/components/post";
 import { useParams, useRouter } from "next/navigation";
-
-const mockPost: Post = {
-  id: "1",
-  title: "Post 1",
-  content: "Content 1",
-  createdAt: 0,
-};
+import useQueryPost from "@/hooks/use-query-post";
 
 const Content = () => {
   const router = useRouter();
@@ -17,15 +11,17 @@ const Content = () => {
   // TODO DEL
   console.log(id);
 
+  const { data, } = useQueryPost();
+
   return (
     <div>
       <button
         onClick={() => router.back()}
-        className="text-sm text-white font-bold"
+        className="text-sm text-[#000] font-bold cursor-pointer"
       >
         {"← Back"}
       </button>
-      <Post post={mockPost} />
+      <Post post={data} />
     </div>
   );
 };

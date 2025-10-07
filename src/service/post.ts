@@ -1,5 +1,5 @@
-export const getPostList = async (page:number)=> {
-    const response = await fetch(`/api/post/list?page=${page}&limit=5`);
+export const getPostList = async (page:String)=> {
+    const response = await fetch(`/api/post/list?page=${page}&limit=2`);
     const resData = await response.json();
     return resData.data;
 };
@@ -12,3 +12,9 @@ export const addPost = async (data: { title: string; content: string }) => {
     const resData = await response.json();
     return resData.data;
 };
+
+export const getPost = async (id: string) => {
+    const response = await fetch(`/api/post/detail?id=${id}`);
+    const resData = await response.json();
+    return resData.data;
+  };
