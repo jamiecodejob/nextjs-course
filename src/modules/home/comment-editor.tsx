@@ -19,10 +19,14 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const queryClient = useQueryClient();
   const {mutate: addPostMute, isPending } = useMutation({
     mutationFn: addPost,
     onSuccess:()=>{
       setIsOpen(false);
+
+      // 對應到 user-query-post-list的posts
+      queryClient.invalidateQueries({queryKey: ["posts", "1"]});
     }
   })
   
@@ -34,6 +38,8 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
     }
     addPostMute({title, content})
   }
+
+
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
