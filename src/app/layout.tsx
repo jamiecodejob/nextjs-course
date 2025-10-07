@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <MyQueryClientProvider>
           {children}
-        <MyQueryClientProvider/>  
+        </MyQueryClientProvider>  
       </body>
     </html>
   );
