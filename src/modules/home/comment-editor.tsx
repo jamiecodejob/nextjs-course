@@ -8,8 +8,8 @@ import {
 } from "@headlessui/react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addPost } from '@/service/post';
-import { useRouter,useSearchParams } from "next/navigation";
+import { addPost } from "@/service/post";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CommentEditorProps {
   isOpen: boolean;
@@ -22,31 +22,29 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
 
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
-  const currentPage = searchParams.get("page")||"1";
+  const currentPage = searchParams.get("page") || "1";
   const router = useRouter();
-  const {mutate: addPostMute, isPending } = useMutation({
+  const { mutate: addPostMute, isPending } = useMutation({
     mutationFn: addPost,
-    onSuccess:()=>{
+    onSuccess: () => {
       setIsOpen(false);
 
       // 對應到 user-query-post-list的posts
-      queryClient.invalidateQueries({queryKey: ["posts", "1"]});
-      if(currentPage!=='1'){
+      queryClient.invalidateQueries({ queryKey: ["posts", "1"] });
+      if (currentPage !== "1") {
         router.push(`/?page/1`);
       }
-    }
-  })
-  
-  const onPost = ()=> {
-    if(isPending)return;
-    if(!title||!content){
+    },
+  });
+
+  const onPost = () => {
+    if (isPending) return;
+    if (!title || !content) {
       alert("請填寫欄位內容");
       return;
     }
-    addPostMute({title, content})
-  }
-
-
+    addPostMute({ title, content });
+  };
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);

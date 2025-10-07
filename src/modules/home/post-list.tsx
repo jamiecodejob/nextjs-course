@@ -6,13 +6,13 @@ import Pagination from "@/modules/home/pagination";
 import useQueryPostList from "@/hooks/use-query-post-list";
 
 const PostList = () => {
-  const {data, isLoading, error} = useQueryPostList();
-  const {posts = [], totalPages } = data|| {};;
+  const { data, isLoading, error } = useQueryPostList();
+  const { posts = [], totalPages } = data || {};
   return (
     <div className="mt-8">
       {isLoading && <div>Loading ... </div>}
       {error && <div>Error: {error.message}</div>}
-      {posts.length ===0 && <div>no posts</div>}
+      {posts.length === 0 && <div>no posts</div>}
       {posts.map((post: Post) => (
         <Link key={post.id} href={`/post/${post.id}`}>
           <Post post={post} />

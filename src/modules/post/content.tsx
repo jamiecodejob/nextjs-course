@@ -11,7 +11,7 @@ const Content = () => {
   // TODO DEL
   console.log(id);
 
-  const { data, } = useQueryPost();
+  const { data } = useQueryPost();
 
   return (
     <div>
