@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addPost } from '@/service/post';
+import { useRouter,useSearchParams } from "next/navigation";
 
 interface CommentEditorProps {
   isOpen: boolean;
@@ -20,6 +21,9 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
   const [content, setContent] = useState("");
 
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
+  const currentPage = searchParams.get("page")||"1";
+  const router = useRouter();
   const {mutate: addPostMute, isPending } = useMutation({
     mutationFn: addPost,
     onSuccess:()=>{
@@ -27,6 +31,9 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
 
       // 對應到 user-query-post-list的posts
       queryClient.invalidateQueries({queryKey: ["posts", "1"]});
+      if(currentPage!=='1'){
+        router.push(`/?page/1`);
+      }
     }
   })
   
