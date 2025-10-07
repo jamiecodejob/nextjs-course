@@ -7,6 +7,8 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addPost } from '@/service/post';
 
 interface CommentEditorProps {
   isOpen: boolean;
@@ -16,6 +18,22 @@ interface CommentEditorProps {
 const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  const {mutate: addPostMute, isPending } = useMutation({
+    mutationFn: addPost,
+    onSuccess:()=>{
+      setIsOpen(false);
+    }
+  })
+  
+  const onPost = ()=> {
+    if(isPending)return;
+    if(!title||!content){
+      alert("請填寫欄位內容");
+      return;
+    }
+    addPostMute({title, content})
+  }
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -58,9 +76,10 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
           </button>
           <button
             className="text-white font-bold cursor-pointer"
-            onClick={() => setIsOpen(false)}
+            onClick={onPost}
+            disabled={isPending}
           >
-            Post
+            {isPending ? "Posting" : "Post"}
           </button>
         </div>
       </DialogPanel>
