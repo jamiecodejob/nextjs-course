@@ -7,18 +7,15 @@ const Content = () => {
   return (
     <>
       <Image
-        src="/images/bitcoin-banner.jpeg"
+        src="/images/coffee-shop.jpg"
         className="w-full rounded-lg border border-white/10"
         width={1584}
         height={396}
-        alt="bitcoin-banner"
+        alt="coffee-shop"
       />
-      <h1 className="text-2xl font-bold mt-2">@bitcoin</h1>
+      <h1 className="text-2xl font-bold mt-2">coffee shop</h1>
       <p className="text-sm text-[#000] mt-2">
-        Bitcoin is a decentralized digital currency that enables instant,
-        peer-to-peer transactions without intermediaries. It is based on
-        blockchain technology, which is a distributed ledger that records
-        transactions in a secure and transparent manner.
+        有時候，一間咖啡廳就是一段生活的縮影。你有沒有哪家店，是你走進去就會覺得安心、想一去再去的？願意和我分享嗎？
       </p>
       <div className="w-full mt-8">
         <CommentBtn />
